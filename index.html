@@ -5,10 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>RiskMaster - Evaluación de Préstamos</title>
 
-  <!-- Open Graph para vista previa en WhatsApp y redes sociales -->
+  <!-- Open Graph para WhatsApp y redes sociales -->
   <meta property="og:title" content="RiskMaster - Evaluación de Préstamos">
   <meta property="og:description" content="Calcula el riesgo de préstamos, tus ganancias y genera facturas fácilmente con RiskMaster.">
-  <meta property="og:image" content="preview.png"> <!-- usa la imagen que subas al repo -->
+  <meta property="og:image" content="https://ricardoaquinoconsultoria-ship-it.github.io/preview.png">
   <meta property="og:url" content="https://ricardoaquinoconsultoria-ship-it.github.io/">
   <meta property="og:type" content="website">
 
@@ -16,7 +16,7 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="RiskMaster - Evaluación de Préstamos">
   <meta name="twitter:description" content="Calcula el riesgo de préstamos, tus ganancias y genera facturas fácilmente con RiskMaster.">
-  <meta name="twitter:image" content="preview.png">
+  <meta name="twitter:image" content="https://ricardoaquinoconsultoria-ship-it.github.io/preview.png">
 
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <style>
@@ -26,7 +26,6 @@
       background: linear-gradient(to bottom, #f0f4f8, #e0e7ef);
       color: #333;
     }
-
     .barra-superior {
       background-color: #1abc9c;
       color: white;
@@ -36,14 +35,12 @@
       text-align: center;
       box-shadow: 0 4px 8px rgba(0,0,0,0.2);
     }
-
     h2 { 
       color: #1a73e8; 
       text-align: center;
       margin: 20px 0 10px 0;
       font-size: 24px;
     }
-
     .preview-img {
       display: block;
       margin: 0 auto 20px auto;
@@ -52,7 +49,6 @@
       border-radius: 12px;
       box-shadow: 0 4px 10px rgba(0,0,0,0.1);
     }
-
     .section { 
       margin: 15px auto;
       background-color: #fff;
@@ -61,35 +57,99 @@
       box-shadow: 0 4px 10px rgba(0,0,0,0.1);
       max-width: 580px;
     }
-
-    .section h3 { color: #1a73e8; margin-bottom: 12px; font-size: 18px; }
-    label { display: block; margin: 6px 0; font-size: 15px; cursor: pointer; }
-    input[type="number"], input[type="text"] {
-      width: 100%; padding: 6px; margin-top: 4px; border-radius: 6px; border: 1px solid #ccc; transition: border-color 0.3s;
+    .section h3 {
+      color: #1a73e8;
+      margin-bottom: 12px;
+      font-size: 18px;
     }
-    input[type="number"]:focus, input[type="text"]:focus { border-color: #1a73e8; outline: none; }
+    label {
+      display: block;
+      margin: 6px 0;
+      font-size: 15px;
+      cursor: pointer;
+    }
+    input[type="number"], input[type="text"] {
+      width: 100%;
+      padding: 6px;
+      margin-top: 4px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      transition: border-color 0.3s;
+    }
+    input[type="number"]:focus, input[type="text"]:focus {
+      border-color: #1a73e8;
+      outline: none;
+    }
     button {
       background: linear-gradient(to right, #1a73e8, #4285f4);
-      color: white; border: none; padding: 10px 20px; font-size: 15px; border-radius: 6px;
-      cursor: pointer; margin-top: 8px; margin-right: 8px; transition: transform 0.2s, box-shadow 0.2s;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      font-size: 15px;
+      border-radius: 6px;
+      cursor: pointer;
+      margin-top: 8px;
+      margin-right: 8px;
+      transition: transform 0.2s, box-shadow 0.2s;
     }
-    button:hover { transform: translateY(-1px); box-shadow: 0 4px 10px rgba(0,0,0,0.2); }
-    .resultado { font-weight: 600; margin-top: 15px; padding: 12px; border-radius: 8px; width: 100%; text-align: center; font-size: 16px; background-color: #f1f8ff; border: 1px solid #cde0ff; transition: background-color 0.3s; }
-    .barra { height: 24px; width: 100%; background-color: #ddd; border-radius: 12px; margin-top: 12px; overflow: hidden; }
-    .barra-llena { height: 100%; width: 0%; text-align: center; line-height: 24px; color: white; font-weight: bold; border-radius: 12px; transition: width 1.2s ease, background-color 1s; }
-    #resultadoGanancia, #resultadoFactura { font-size: 15px; font-weight: 500; color: #000; margin-top: 12px; padding: 10px; border: 1px solid #ccc; border-radius: 8px; background-color: #f1f8ff; }
-    @media (max-width: 650px) { .section { margin: 12px; padding: 12px; } button { width: 100%; margin-bottom: 8px; } }
+    button:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+    .resultado {
+      font-weight: 600;
+      margin-top: 15px;
+      padding: 12px;
+      border-radius: 8px;
+      width: 100%;
+      text-align: center;
+      font-size: 16px;
+      background-color: #f1f8ff;
+      border: 1px solid #cde0ff;
+      transition: background-color 0.3s;
+    }
+    .barra {
+      height: 24px;
+      width: 100%;
+      background-color: #ddd;
+      border-radius: 12px;
+      margin-top: 12px;
+      overflow: hidden;
+    }
+    .barra-llena {
+      height: 100%;
+      width: 0%;
+      text-align: center;
+      line-height: 24px;
+      color: white;
+      font-weight: bold;
+      border-radius: 12px;
+      transition: width 1.2s ease, background-color 1s;
+    }
+    #resultadoGanancia, #resultadoFactura {
+      font-size: 15px;
+      font-weight: 500;
+      color: #000;
+      margin-top: 12px;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      background-color: #f1f8ff;
+    }
+    @media (max-width: 650px) {
+      .section { margin: 12px; padding: 12px; }
+      button { width: 100%; margin-bottom: 8px; }
+    }
   </style>
 </head>
 <body>
 
   <div class="barra-superior">RiskMaster</div>
   <h2>Evaluación de Riesgo de Préstamo</h2>
-  <img src="preview.png" alt="Vista previa RiskMaster" class="preview-img">
+  <img src="https://ricardoaquinoconsultoria-ship-it.github.io/preview.png" alt="Vista previa RiskMaster" class="preview-img">
 
-  <!-- Secciones (Riesgo, Calculadora, Factura) -->
+  <!-- Sección Riesgo -->
   <div class="section">
-    <!-- Riesgo -->
     <form id="formularioRiesgo">
       <h3>Ingresos y capacidad de pago</h3>
       <label><input type="radio" name="ingresos" value="5"> Menos de 10,000 RD$ / mes</label>
@@ -111,11 +171,13 @@
       <button type="button" onclick="limpiarRiesgo()">Limpiar Riesgo</button>
     </form>
     <div class="resultado" id="resultado"></div>
-    <div class="barra"><div class="barra-llena" id="barraRiesgo">0%</div></div>
+    <div class="barra">
+      <div class="barra-llena" id="barraRiesgo">0%</div>
+    </div>
   </div>
 
+  <!-- Sección Calculadora -->
   <div class="section">
-    <!-- Calculadora -->
     <h3>Calculadora de Ganancias y Pagos Mensuales</h3>
     <label>Último saldo (RD$): <input type="number" id="saldo" value="10000"></label>
     <label>Tasa anual (%): <input type="number" id="tasa" value="10"></label>
@@ -125,8 +187,8 @@
     <div id="resultadoGanancia"></div>
   </div>
 
+  <!-- Sección Factura -->
   <div class="section">
-    <!-- Factura -->
     <h3>Generar Factura de Pago</h3>
     <label>Nombre del Cliente:</label>
     <input type="text" id="nombreCliente" placeholder="Ingrese el nombre del cliente">
@@ -141,69 +203,94 @@
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <script>
-    // Riesgo
+    // --- Riesgo ---
     function calcularRiesgo() {
       let puntos = 0;
       const formulario = document.getElementById('formularioRiesgo');
-      formulario.querySelectorAll('input[type="radio"]:checked').forEach(i => puntos += parseInt(i.value));
+      formulario.querySelectorAll('input[type="radio"]:checked').forEach(item => puntos += parseInt(item.value));
       const resultado = document.getElementById('resultado');
       const barra = document.getElementById('barraRiesgo');
+      let mensaje = "";
       let porcentaje = (puntos / 20) * 100;
-      let mensaje = puntos <=7 ? `Riesgo Bajo (${puntos} puntos)` :
-                    puntos <=15 ? `Riesgo Medio (${puntos} puntos)` :
-                    `Riesgo Alto (${puntos} puntos)`;
-      barra.style.backgroundColor = puntos <=7 ? "#28a745" : puntos<=15 ? "#ffc107" : "#dc3545";
+      if (puntos <= 7) {
+        mensaje = `Riesgo Bajo (${puntos} puntos) → Préstamo aprobado con monto completo.`;
+        barra.style.backgroundColor = "#28a745";
+      } else if (puntos <= 15) {
+        mensaje = `Riesgo Medio (${puntos} puntos) → Préstamo aprobado con monto reducido.`;
+        barra.style.backgroundColor = "#ffc107";
+      } else {
+        mensaje = `Riesgo Alto (${puntos} puntos) → Préstamo no recomendado.`;
+        barra.style.backgroundColor = "#dc3545";
+      }
       resultado.innerText = mensaje;
       barra.style.width = porcentaje + "%";
       barra.innerText = Math.round(porcentaje) + "%";
     }
-    function limpiarRiesgo() { document.getElementById('formularioRiesgo').reset(); 
-      document.getElementById('resultado').innerText=""; 
-      const barra = document.getElementById('barraRiesgo'); 
-      barra.style.width="0%"; barra.innerText="0%"; barra.style.backgroundColor="#28a745"; }
 
-    // Calculadora
-    function calcularGananciaPago() {
-      const saldo=parseFloat(document.getElementById('saldo').value);
-      const tasa=parseFloat(document.getElementById('tasa').value)/100;
-      const plazo=parseInt(document.getElementById('plazo').value);
-      const ganancia=saldo*tasa*(plazo/12);
-      const pagoMensual=(saldo+ganancia)/plazo;
-      document.getElementById('resultadoGanancia').innerHTML=
-        "Ganancia estimada: RD$ "+ganancia.toFixed(2)+"<br>"+
-        "Pago mensual estimado: RD$ "+pagoMensual.toFixed(2);
+    function limpiarRiesgo() {
+      document.getElementById('formularioRiesgo').reset();
+      const resultado = document.getElementById('resultado');
+      const barra = document.getElementById('barraRiesgo');
+      resultado.innerText = "";
+      barra.style.width = "0%";
+      barra.innerText = "0%";
+      barra.style.backgroundColor = "#28a745";
     }
-    function limpiarCalculadora() { document.getElementById('saldo').value="10000";
-      document.getElementById('tasa').value="10"; document.getElementById('plazo').value="12";
-      document.getElementById('resultadoGanancia').innerText=""; }
 
-    // Factura
+    // --- Calculadora ---
+    function calcularGananciaPago() {
+      const saldo = parseFloat(document.getElementById('saldo').value);
+      const tasa = parseFloat(document.getElementById('tasa').value)/100;
+      const plazo = parseInt(document.getElementById('plazo').value);
+      const ganancia = saldo * tasa * (plazo/12);
+      const pagoMensual = (saldo + ganancia) / plazo;
+      document.getElementById('resultadoGanancia').innerHTML = 
+        "Ganancia estimada: RD$ " + ganancia.toFixed(2) + "<br>" +
+        "Pago mensual estimado: RD$ " + pagoMensual.toFixed(2);
+    }
+
+    function limpiarCalculadora() {
+      document.getElementById('saldo').value = "10000";
+      document.getElementById('tasa').value = "10";
+      document.getElementById('plazo').value = "12";
+      document.getElementById('resultadoGanancia').innerText = "";
+    }
+
+    // --- Factura ---
     function generarFactura() {
       const { jsPDF } = window.jspdf;
-      const nombre=document.getElementById('nombreCliente').value;
-      const saldo=parseFloat(document.getElementById('saldoFactura').value);
-      const abono=parseFloat(document.getElementById('abonoFactura').value);
-      if(!nombre||isNaN(saldo)||isNaN(abono)){ alert("Completa todos los campos"); return; }
-      const saldoPendiente=saldo-abono;
-      document.getElementById('resultadoFactura').innerHTML=
-        `<strong>Cliente:</strong> ${nombre}<br>`+
-        `<strong>Último saldo:</strong> RD$ ${saldo.toFixed(2)}<br>`+
-        `<strong>Abono realizado:</strong> RD$ ${abono.toFixed(2)}<br>`+
-        `<strong>Saldo pendiente:</strong> RD$ ${saldoPendiente.toFixed(2)}<br>`+
+      const nombre = document.getElementById('nombreCliente').value;
+      const saldo = parseFloat(document.getElementById('saldoFactura').value);
+      const abono = parseFloat(document.getElementById('abonoFactura').value);
+      if (!nombre || isNaN(saldo) || isNaN(abono)) {
+        alert("Por favor completa todos los campos correctamente.");
+        return;
+      }
+      const saldoPendiente = saldo - abono;
+      document.getElementById('resultadoFactura').innerHTML =
+        `<strong>Cliente:</strong> ${nombre}<br>` +
+        `<strong>Último saldo:</strong> RD$ ${saldo.toFixed(2)}<br>` +
+        `<strong>Abono realizado:</strong> RD$ ${abono.toFixed(2)}<br>` +
+        `<strong>Saldo pendiente:</strong> RD$ ${saldoPendiente.toFixed(2)}<br>` +
         `<strong>Fecha:</strong> ${new Date().toLocaleDateString()}`;
-      const doc=new jsPDF();
-      doc.setFontSize(16); doc.text("Factura de Pago de Préstamo",20,20);
+      const doc = new jsPDF();
+      doc.setFontSize(16);
+      doc.text("Factura de Pago de Préstamo", 20, 20);
       doc.setFontSize(12);
-      doc.text(`Cliente: ${nombre}`,20,40);
-      doc.text(`Último saldo: RD$ ${saldo.toFixed(2)}`,20,50);
-      doc.text(`Abono realizado: RD$ ${abono.toFixed(2)}`,20,60);
-      doc.text(`Saldo pendiente: RD$ ${saldoPendiente.toFixed(2)}`,20,70);
-      doc.text(`Fecha: ${new Date().toLocaleDateString()}`,20,80);
+      doc.text(`Cliente: ${nombre}`, 20, 40);
+      doc.text(`Último saldo: RD$ ${saldo.toFixed(2)}`, 20, 50);
+      doc.text(`Abono realizado: RD$ ${abono.toFixed(2)}`, 20, 60);
+      doc.text(`Saldo pendiente: RD$ ${saldoPendiente.toFixed(2)}`, 20, 70);
+      doc.text(`Fecha: ${new Date().toLocaleDateString()}`, 20, 80);
       doc.save(`factura_${nombre}.pdf`);
     }
-    function limpiarFactura() { document.getElementById('nombreCliente').value="";
-      document.getElementById('saldoFactura').value=""; document.getElementById('abonoFactura').value="";
-      document.getElementById('resultadoFactura').innerText=""; }
+
+    function limpiarFactura() {
+      document.getElementById('nombreCliente').value = "";
+      document.getElementById('saldoFactura').value = "";
+      document.getElementById('abonoFactura').value = "";
+      document.getElementById('resultadoFactura').innerText = "";
+    }
   </script>
 </body>
 </html>
