@@ -3,128 +3,141 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- Título vacío para que no se muestre en la pestaña -->
-  <title></title>
+  <title>RiskMaster - Evaluación de Préstamos</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <style>
     body {
-      font-family: Arial, sans-serif;
+      font-family: 'Poppins', Arial, sans-serif;
       margin: 0;
-      background-color: #f0f4f8;
+      background: linear-gradient(to bottom, #f0f4f8, #e0e7ef);
       color: #333;
     }
 
-    /* Barra superior estilo WhatsApp mejorada */
+    /* Barra superior */
     .barra-superior {
-      background-color: #128C7E; /* verde agradable */
+      background-color: #1abc9c; /* verde azulado más suave */
       color: white;
-      padding: 15px;
+      padding: 12px;
       font-size: 20px;
-      font-weight: bold;
+      font-weight: 600;
       text-align: center;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
     }
 
     h2 { 
       color: #1a73e8; 
       text-align: center;
-      margin: 20px 0 30px 0;
+      margin: 20px 0 25px 0;
+      font-size: 24px;
     }
 
     .section { 
-      margin: 20px;
+      margin: 15px auto;
       background-color: #fff;
       padding: 15px;
-      border-radius: 10px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      max-width: 580px;
     }
 
     .section h3 {
       color: #1a73e8;
-      margin-bottom: 10px;
+      margin-bottom: 12px;
+      font-size: 18px;
     }
 
     label {
       display: block;
-      margin: 5px 0;
-      font-size: 16px;
+      margin: 6px 0;
+      font-size: 15px;
+      cursor: pointer;
     }
 
     input[type="number"], input[type="text"] {
       width: 100%;
-      padding: 5px;
-      margin-top: 5px;
-      border-radius: 5px;
+      padding: 6px;
+      margin-top: 4px;
+      border-radius: 6px;
       border: 1px solid #ccc;
+      transition: border-color 0.3s;
+    }
+
+    input[type="number"]:focus, input[type="text"]:focus {
+      border-color: #1a73e8;
+      outline: none;
     }
 
     button {
-      background-color: #1a73e8;
+      background: linear-gradient(to right, #1a73e8, #4285f4);
       color: white;
       border: none;
       padding: 10px 20px;
-      font-size: 16px;
-      border-radius: 5px;
+      font-size: 15px;
+      border-radius: 6px;
       cursor: pointer;
-      margin-top: 10px;
-      margin-right: 10px;
-      transition: background-color 0.3s ease;
+      margin-top: 8px;
+      margin-right: 8px;
+      transition: transform 0.2s, box-shadow 0.2s;
     }
 
     button:hover {
-      background-color: #155ab6;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
     }
 
     .resultado {
-      font-weight: bold;
-      margin-top: 20px;
-      padding: 15px;
+      font-weight: 600;
+      margin-top: 15px;
+      padding: 12px;
       border-radius: 8px;
       width: 100%;
-      max-width: 500px;
       text-align: center;
-      font-size: 18px;
+      font-size: 16px;
+      background-color: #f1f8ff;
+      border: 1px solid #cde0ff;
+      transition: background-color 0.3s;
     }
 
     .barra {
-      height: 25px;
+      height: 24px;
       width: 100%;
       background-color: #ddd;
       border-radius: 12px;
-      margin-top: 10px;
+      margin-top: 12px;
       overflow: hidden;
     }
 
     .barra-llena {
       height: 100%;
       width: 0%;
-      background-color: green;
       text-align: center;
-      line-height: 25px;
+      line-height: 24px;
       color: white;
       font-weight: bold;
       border-radius: 12px;
-      transition: width 1s, background-color 1s;
+      transition: width 1.2s ease, background-color 1s;
     }
 
     #resultadoGanancia, #resultadoFactura {
-      font-size: 18px;
-      font-weight: bold;
+      font-size: 15px;
+      font-weight: 500;
       color: #000;
-      margin-top: 10px;
+      margin-top: 12px;
       padding: 10px;
       border: 1px solid #ccc;
       border-radius: 8px;
-      background-color: #e8f0fe;
+      background-color: #f1f8ff;
+    }
+
+    @media (max-width: 650px) {
+      .section { margin: 12px; padding: 12px; }
+      button { width: 100%; margin-bottom: 8px; }
     }
   </style>
 </head>
 <body>
 
-  <!-- Barra superior visible en la página -->
-  <div class="barra-superior">
-    RiskMaster
-  </div>
-
+  <div class="barra-superior">RiskMaster</div>
   <h2>Evaluación de Riesgo de Préstamo</h2>
 
   <!-- Sección Riesgo -->
@@ -176,16 +189,12 @@
     <h3>Generar Factura de Pago</h3>
     <label>Nombre del Cliente:</label>
     <input type="text" id="nombreCliente" placeholder="Ingrese el nombre del cliente">
-
     <label>Último saldo (RD$):</label>
     <input type="number" id="saldoFactura" placeholder="Último saldo pendiente">
-
     <label>Abono Realizado (RD$):</label>
     <input type="number" id="abonoFactura" placeholder="Monto del abono">
-
     <button type="button" onclick="generarFactura()">Generar Factura PDF</button>
     <button type="button" onclick="limpiarFactura()">Limpiar Factura</button>
-
     <div id="resultadoFactura"></div>
   </div>
 
@@ -195,26 +204,23 @@
     function calcularRiesgo() {
       let puntos = 0;
       const formulario = document.getElementById('formularioRiesgo');
-      formulario.querySelectorAll('input[type="radio"]:checked').forEach(item => {
-        puntos += parseInt(item.value);
-      });
+      formulario.querySelectorAll('input[type="radio"]:checked').forEach(item => puntos += parseInt(item.value));
 
       const resultado = document.getElementById('resultado');
       const barra = document.getElementById('barraRiesgo');
-      resultado.className = "resultado";
 
       let mensaje = "";
       let porcentaje = (puntos / 20) * 100;
 
       if (puntos <= 7) {
         mensaje = `Riesgo Bajo (${puntos} puntos) → Préstamo aprobado con monto completo.`;
-        barra.style.backgroundColor = "green";
+        barra.style.backgroundColor = "#28a745";
       } else if (puntos <= 15) {
         mensaje = `Riesgo Medio (${puntos} puntos) → Préstamo aprobado con monto reducido.`;
-        barra.style.backgroundColor = "orange";
+        barra.style.backgroundColor = "#ffc107";
       } else {
         mensaje = `Riesgo Alto (${puntos} puntos) → Préstamo no recomendado.`;
-        barra.style.backgroundColor = "red";
+        barra.style.backgroundColor = "#dc3545";
       }
 
       resultado.innerText = mensaje;
@@ -229,7 +235,7 @@
       resultado.innerText = "";
       barra.style.width = "0%";
       barra.innerText = "0%";
-      barra.style.backgroundColor = "green";
+      barra.style.backgroundColor = "#28a745";
     }
 
     // --- Calculadora ---
@@ -293,6 +299,5 @@
       document.getElementById('resultadoFactura').innerText = "";
     }
   </script>
-
 </body>
 </html>
