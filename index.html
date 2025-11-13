@@ -20,128 +20,29 @@
 
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <style>
-    body {
-      font-family: 'Poppins', Arial, sans-serif;
-      margin: 0;
-      background: linear-gradient(to bottom, #f0f4f8, #e0e7ef);
-      color: #333;
-    }
-    /* Barra superior solo decorativa */
-    .barra-superior {
-      background-color: #1abc9c; /* línea verde */
-      height: 6px; /* línea fina */
-      width: 100%;
-    }
-    h2 { 
-      color: #1a73e8; 
-      text-align: center;
-      margin: 20px 0 10px 0;
-      font-size: 24px;
-    }
-    .preview-img {
-      display: block;
-      margin: 0 auto 20px auto;
-      max-width: 100%;
-      height: auto;
-      border-radius: 12px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    }
-    .section { 
-      margin: 15px auto;
-      background-color: #fff;
-      padding: 15px;
-      border-radius: 12px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      max-width: 580px;
-    }
-    .section h3 {
-      color: #1a73e8;
-      margin-bottom: 12px;
-      font-size: 18px;
-    }
-    label {
-      display: block;
-      margin: 6px 0;
-      font-size: 15px;
-      cursor: pointer;
-    }
-    input[type="number"], input[type="text"] {
-      width: 100%;
-      padding: 6px;
-      margin-top: 4px;
-      border-radius: 6px;
-      border: 1px solid #ccc;
-      transition: border-color 0.3s;
-    }
-    input[type="number"]:focus, input[type="text"]:focus {
-      border-color: #1a73e8;
-      outline: none;
-    }
-    button {
-      background: linear-gradient(to right, #1a73e8, #4285f4);
-      color: white;
-      border: none;
-      padding: 10px 20px;
-      font-size: 15px;
-      border-radius: 6px;
-      cursor: pointer;
-      margin-top: 8px;
-      margin-right: 8px;
-      transition: transform 0.2s, box-shadow 0.2s;
-    }
-    button:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-    }
-    .resultado {
-      font-weight: 600;
-      margin-top: 15px;
-      padding: 12px;
-      border-radius: 8px;
-      width: 100%;
-      text-align: center;
-      font-size: 16px;
-      background-color: #f1f8ff;
-      border: 1px solid #cde0ff;
-      transition: background-color 0.3s;
-    }
-    .barra {
-      height: 24px;
-      width: 100%;
-      background-color: #ddd;
-      border-radius: 12px;
-      margin-top: 12px;
-      overflow: hidden;
-    }
-    .barra-llena {
-      height: 100%;
-      width: 0%;
-      text-align: center;
-      line-height: 24px;
-      color: white;
-      font-weight: bold;
-      border-radius: 12px;
-      transition: width 1.2s ease, background-color 1s;
-    }
-    #resultadoGanancia, #resultadoFactura {
-      font-size: 15px;
-      font-weight: 500;
-      color: #000;
-      margin-top: 12px;
-      padding: 10px;
-      border: 1px solid #ccc;
-      border-radius: 8px;
-      background-color: #f1f8ff;
-    }
-    @media (max-width: 650px) {
-      .section { margin: 12px; padding: 12px; }
-      button { width: 100%; margin-bottom: 8px; }
-    }
+    body { font-family: 'Poppins', Arial, sans-serif; margin: 0; background: linear-gradient(to bottom, #f0f4f8, #e0e7ef); color: #333; }
+    .barra-superior { background-color: #1abc9c; height: 6px; width: 100%; }
+    h2 { color: #1a73e8; text-align: center; margin: 20px 0 10px; font-size: 24px; }
+    .preview-img { display: block; margin: 0 auto 20px; max-width: 100%; height: auto; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+    .section { margin: 15px auto; background-color: #fff; padding: 15px; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); max-width: 580px; }
+    .section h3 { color: #1a73e8; margin-bottom: 12px; font-size: 18px; }
+    label { display: block; margin: 6px 0; font-size: 15px; cursor: pointer; }
+    input[type="number"], input[type="text"] { width: 100%; padding: 6px; margin-top: 4px; border-radius: 6px; border: 1px solid #ccc; transition: border-color 0.3s; }
+    input[type="number"]:focus, input[type="text"]:focus { border-color: #1a73e8; outline: none; }
+    button { background: linear-gradient(to right, #1a73e8, #4285f4); color: white; border: none; padding: 10px 20px; font-size: 15px; border-radius: 6px; cursor: pointer; margin-top: 8px; margin-right: 8px; transition: transform 0.2s, box-shadow 0.2s; }
+    button:hover { transform: translateY(-1px); box-shadow: 0 4px 10px rgba(0,0,0,0.2); }
+    .resultado { font-weight: 600; margin-top: 15px; padding: 12px; border-radius: 8px; width: 100%; text-align: center; font-size: 16px; background-color: #f1f8ff; border: 1px solid #cde0ff; transition: background-color 0.3s; }
+    .barra { height: 24px; width: 100%; background-color: #ddd; border-radius: 12px; margin-top: 12px; overflow: hidden; }
+    .barra-llena { height: 100%; width: 0%; text-align: center; line-height: 24px; color: white; font-weight: bold; border-radius: 12px; transition: width 1.2s ease, background-color 1s; }
+    #resultadoGanancia, #resultadoFactura { font-size: 15px; font-weight: 500; color: #000; margin-top: 12px; padding: 10px; border: 1px solid #ccc; border-radius: 8px; background-color: #f1f8ff; }
+    table { width: 100%; border-collapse: collapse; margin-top: 8px; }
+    table, th, td { border: 1px solid #ccc; padding: 6px; text-align: center; }
+    th { background-color: #e0e7ef; }
+    @media (max-width: 650px) { .section { margin: 12px; padding: 12px; } button { width: 100%; margin-bottom: 8px; } }
   </style>
 </head>
 <body>
 
-  <!-- Barra superior solo decorativa -->
   <div class="barra-superior"></div>
 
   <h2>Evaluación de Riesgo de Préstamo</h2>
@@ -170,18 +71,16 @@
       <button type="button" onclick="limpiarRiesgo()">Limpiar Riesgo</button>
     </form>
     <div class="resultado" id="resultado"></div>
-    <div class="barra">
-      <div class="barra-llena" id="barraRiesgo">0%</div>
-    </div>
+    <div class="barra"><div class="barra-llena" id="barraRiesgo">0%</div></div>
   </div>
 
-  <!-- Sección Calculadora -->
+  <!-- Sección Calculadora con cuotas iguales -->
   <div class="section">
-    <h3>Calculadora de Ganancias y Pagos Mensuales</h3>
-    <label>Último saldo (RD$): <input type="number" id="saldo" value="10000"></label>
-    <label>Tasa anual (%): <input type="number" id="tasa" value="10"></label>
-    <label>Plazo (meses): <input type="number" id="plazo" value="12"></label>
-    <button type="button" onclick="calcularGananciaPago()">Calcular Ganancia y Pago Mensual</button>
+    <h3>Calculadora de Cuotas Iguales</h3>
+    <label>Monto del préstamo (RD$): <input type="number" id="monto" value="10000"></label>
+    <label>Porcentaje de interés base (% para 3 meses): <input type="number" id="interes" value="20"></label>
+    <label>Plazo (meses): <input type="number" id="plazo" value="3"></label>
+    <button type="button" onclick="calcularCuotasIguales()">Calcular Cuotas</button>
     <button type="button" onclick="limpiarCalculadora()">Limpiar Calculadora</button>
     <div id="resultadoGanancia"></div>
   </div>
@@ -236,26 +135,41 @@
       barra.style.backgroundColor = "#28a745";
     }
 
-    // --- Calculadora con interés compuesto ---
-    function calcularGananciaPago() {
-      const saldo = parseFloat(document.getElementById('saldo').value);
-      const tasaAnual = parseFloat(document.getElementById('tasa').value) / 100;
-      const plazo = parseInt(document.getElementById('plazo').value);
+    // --- Calculadora de cuotas iguales ---
+    function calcularCuotasIguales() {
+      const P = parseFloat(document.getElementById('monto').value);
+      const interesBase = parseFloat(document.getElementById('interes').value);
+      const n = parseInt(document.getElementById('plazo').value);
 
-      // Interés compuesto mensual
-      const montoTotal = saldo * Math.pow(1 + (tasaAnual / 12), plazo);
-      const ganancia = montoTotal - saldo;
-      const pagoMensual = montoTotal / plazo;
+      if(isNaN(P) || isNaN(interesBase) || isNaN(n) || P <= 0 || n <= 0) {
+        alert("Por favor completa todos los campos correctamente con valores positivos.");
+        return;
+      }
 
-      document.getElementById('resultadoGanancia').innerHTML = 
-        "Ganancia estimada (interés compuesto): RD$ " + ganancia.toFixed(2) + "<br>" +
-        "Pago mensual estimado: RD$ " + pagoMensual.toFixed(2);
+      // Interés proporcional al plazo: interesBase para 3 meses
+      const totalInteres = P * (interesBase / 100) * (n / 3);
+      const totalPagar = P + totalInteres;
+      const cuotaMensual = totalPagar / n;
+
+      let resultadoHTML = `<strong>Préstamo:</strong> RD$ ${P.toFixed(2)}<br>`;
+      resultadoHTML += `<strong>Plazo:</strong> ${n} meses<br>`;
+      resultadoHTML += `<strong>Interés total:</strong> RD$ ${totalInteres.toFixed(2)}<br>`;
+      resultadoHTML += `<strong>Total a pagar:</strong> RD$ ${totalPagar.toFixed(2)}<br>`;
+      resultadoHTML += `<strong>Cuotas mensuales iguales:</strong> RD$ ${cuotaMensual.toFixed(2)}<br>`;
+      resultadoHTML += `<table><tr><th>Mes</th><th>Cuota</th></tr>`;
+
+      for(let mes=1; mes<=n; mes++){
+        resultadoHTML += `<tr><td>${mes}</td><td>RD$ ${cuotaMensual.toFixed(2)}</td></tr>`;
+      }
+
+      resultadoHTML += `</table>`;
+      document.getElementById('resultadoGanancia').innerHTML = resultadoHTML;
     }
 
     function limpiarCalculadora() {
-      document.getElementById('saldo').value = "10000";
-      document.getElementById('tasa').value = "10";
-      document.getElementById('plazo').value = "12";
+      document.getElementById('monto').value = "10000";
+      document.getElementById('interes').value = "20";
+      document.getElementById('plazo').value = "3";
       document.getElementById('resultadoGanancia').innerText = "";
     }
 
