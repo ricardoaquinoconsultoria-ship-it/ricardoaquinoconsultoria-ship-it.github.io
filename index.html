@@ -26,20 +26,18 @@
       background: linear-gradient(to bottom, #f0f4f8, #e0e7ef);
       color: #333;
     }
+    /* Barra superior solo decorativa */
     .barra-superior {
       background-color: #1abc9c;
-      color: white;
-      padding: 12px;
-      font-size: 20px;
-      font-weight: 600;
-      text-align: center;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      height: 8px; /* barra fina sin texto */
+      width: 100%;
     }
     h2 { 
       color: #1a73e8; 
       text-align: center;
       margin: 20px 0 10px 0;
-      font-size: 24px;
+      font-size: 26px;
+      font-weight: 600;
     }
     .preview-img {
       display: block;
@@ -144,8 +142,8 @@
 </head>
 <body>
 
-  <div class="barra-superior">RiskMaster</div>
-  <h2>Evaluación de Riesgo de Préstamo</h2>
+  <div class="barra-superior"></div>
+  <h2>RiskMaster - Evaluación de Préstamos</h2>
   <img src="https://raw.githubusercontent.com/ricardoaquinoconsultoria-ship-it/ricardoaquinoconsultoria-ship-it.github.io/main/riskmaster-preview.jpg?v=2" alt="Vista previa RiskMaster" class="preview-img">
 
   <!-- Sección Riesgo -->
