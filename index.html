@@ -3,23 +3,35 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>RiskMaster</title>
+  <!-- Título vacío para que no se muestre en la pestaña -->
+  <title></title>
   <style>
     body {
       font-family: Arial, sans-serif;
-      margin: 20px;
+      margin: 0;
       background-color: #f0f4f8;
       color: #333;
+    }
+
+    /* Barra superior estilo WhatsApp mejorada */
+    .barra-superior {
+      background-color: #128C7E; /* verde agradable */
+      color: white;
+      padding: 15px;
+      font-size: 20px;
+      font-weight: bold;
+      text-align: center;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
     }
 
     h2 { 
       color: #1a73e8; 
       text-align: center;
-      margin-bottom: 30px;
+      margin: 20px 0 30px 0;
     }
 
     .section { 
-      margin-bottom: 20px; 
+      margin: 20px;
       background-color: #fff;
       padding: 15px;
       border-radius: 10px;
@@ -104,10 +116,14 @@
       border-radius: 8px;
       background-color: #e8f0fe;
     }
-
   </style>
 </head>
 <body>
+
+  <!-- Barra superior visible en la página -->
+  <div class="barra-superior">
+    RiskMaster
+  </div>
 
   <h2>Evaluación de Riesgo de Préstamo</h2>
 
@@ -251,7 +267,6 @@
 
       const saldoPendiente = saldo - abono;
 
-      // Mostrar factura en pantalla
       document.getElementById('resultadoFactura').innerHTML =
         `<strong>Cliente:</strong> ${nombre}<br>` +
         `<strong>Último saldo:</strong> RD$ ${saldo.toFixed(2)}<br>` +
@@ -259,7 +274,6 @@
         `<strong>Saldo pendiente:</strong> RD$ ${saldoPendiente.toFixed(2)}<br>` +
         `<strong>Fecha:</strong> ${new Date().toLocaleDateString()}`;
 
-      // Generar PDF
       const doc = new jsPDF();
       doc.setFontSize(16);
       doc.text("Factura de Pago de Préstamo", 20, 20);
