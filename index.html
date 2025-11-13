@@ -28,7 +28,7 @@
     }
     /* Barra superior solo decorativa */
     .barra-superior {
-      background-color: #1abc9c; /* verde */
+      background-color: #1abc9c; /* línea verde */
       height: 6px; /* línea fina */
       width: 100%;
     }
@@ -236,15 +236,19 @@
       barra.style.backgroundColor = "#28a745";
     }
 
-    // --- Calculadora ---
+    // --- Calculadora con interés compuesto ---
     function calcularGananciaPago() {
       const saldo = parseFloat(document.getElementById('saldo').value);
-      const tasa = parseFloat(document.getElementById('tasa').value)/100;
+      const tasaAnual = parseFloat(document.getElementById('tasa').value) / 100;
       const plazo = parseInt(document.getElementById('plazo').value);
-      const ganancia = saldo * tasa * (plazo/12);
-      const pagoMensual = (saldo + ganancia) / plazo;
+
+      // Interés compuesto mensual
+      const montoTotal = saldo * Math.pow(1 + (tasaAnual / 12), plazo);
+      const ganancia = montoTotal - saldo;
+      const pagoMensual = montoTotal / plazo;
+
       document.getElementById('resultadoGanancia').innerHTML = 
-        "Ganancia estimada: RD$ " + ganancia.toFixed(2) + "<br>" +
+        "Ganancia estimada (interés compuesto): RD$ " + ganancia.toFixed(2) + "<br>" +
         "Pago mensual estimado: RD$ " + pagoMensual.toFixed(2);
     }
 
@@ -281,7 +285,7 @@
       doc.text(`Abono realizado: RD$ ${abono.toFixed(2)}`, 20, 60);
       doc.text(`Saldo pendiente: RD$ ${saldoPendiente.toFixed(2)}`, 20, 70);
       doc.text(`Fecha: ${new Date().toLocaleDateString()}`, 20, 80);
-      doc.save(`factura_${nombre}.pdf`);
+      doc.save(`factura_${nombre.replace(/\s+/g,'_')}.pdf`);
     }
 
     function limpiarFactura() {
