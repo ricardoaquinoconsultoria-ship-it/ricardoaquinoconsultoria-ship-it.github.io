@@ -1,206 +1,284 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Riesgo Crédito Pro</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-    <style>
-        body {
-            /* Fuente ahora cargada */
-            font-family: 'Poppins', sans-serif;
-            background: #f4f6f9;
-            margin: 0;
-            padding: 0;
-        }
-        header {
-            background: #1a73e8;
-            color: white;
-            padding: 1rem 2rem;
-            text-align: center;
-            font-size: 1.5rem;
-            font-weight: 600;
-        }
-        main {
-            max-width: 1100px;
-            margin: 2rem auto;
-            background: white;
-            border-radius: 15px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-            padding: 2rem;
-        }
-        .filtros {
-            display: flex;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            gap: 1rem;
-            margin-bottom: 1.5rem;
-        }
-        select, button, input {
-            padding: 0.6rem 1rem;
-            border: 1px solid #ccc;
-            border-radius: 8px;
-            font-size: 1rem;
-            /* ⚠️ MEJORA: Asegurar que los inputs y selects ocupen al menos un espacio decente en pantallas grandes */
-            flex-grow: 1; 
-            min-width: 180px;
-        }
-        button {
-            background: #1a73e8;
-            color: white;
-            border: none;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-        button:hover {
-            background: #1559b0;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        th, td {
-            text-align: left;
-            padding: 0.8rem;
-            border-bottom: 1px solid #eee;
-        }
-        th {
-            background: #f0f3f8;
-        }
-        tr:hover {
-            background: #f9fbff;
-        }
-        .alto {color: #e53935; font-weight: bold;}
-        .medio {color: #ffb300; font-weight: bold;}
-        .bajo {color: #43a047; font-weight: bold;}
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Scoring de Préstamo con Calculadora y Factura</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      background-color: #f0f4f8;
+      color: #333;
+    }
+
+    h2 { 
+      color: #1a73e8; 
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .section { 
+      margin-bottom: 20px; 
+      background-color: #fff;
+      padding: 15px;
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    .section h3 {
+      color: #1a73e8;
+      margin-bottom: 10px;
+    }
+
+    label {
+      display: block;
+      margin: 5px 0;
+      font-size: 16px;
+    }
+
+    input[type="number"], input[type="text"] {
+      width: 100%;
+      padding: 5px;
+      margin-top: 5px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    button {
+      background-color: #1a73e8;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      font-size: 16px;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 10px;
+      margin-right: 10px;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #155ab6;
+    }
+
+    .resultado {
+      font-weight: bold;
+      margin-top: 20px;
+      padding: 15px;
+      border-radius: 8px;
+      width: 100%;
+      max-width: 500px;
+      text-align: center;
+      font-size: 18px;
+    }
+
+    .barra {
+      height: 25px;
+      width: 100%;
+      background-color: #ddd;
+      border-radius: 12px;
+      margin-top: 10px;
+      overflow: hidden;
+    }
+
+    .barra-llena {
+      height: 100%;
+      width: 0%;
+      background-color: green;
+      text-align: center;
+      line-height: 25px;
+      color: white;
+      font-weight: bold;
+      border-radius: 12px;
+      transition: width 1s, background-color 1s;
+    }
+
+    #resultadoGanancia, #resultadoFactura {
+      font-size: 18px;
+      font-weight: bold;
+      color: #000;
+      margin-top: 10px;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      background-color: #e8f0fe;
+    }
+
+  </style>
 </head>
 <body>
-    <header>Riesgo Crédito Pro</header>
-    <main>
-        <div class="filtros">
-            <select id="filtro-empleo">
-                <option value="todos">Todos los empleos</option>
-                <option value="empleado">Empleados</option>
-                <option value="desempleado">Desempleados</option>
-            </select>
-            <select id="filtro-riesgo">
-                <option value="todos">Todos los riesgos</option>
-                <option value="alto">Riesgo alto</option>
-                <option value="medio">Riesgo medio</option>
-                <option value="bajo">Riesgo bajo</option>
-            </select>
-            <input type="text" id="buscar" placeholder="Buscar por nombre...">
-            <button onclick="exportarCSV()">Exportar CSV</button>
-        </div>
-        <table id="tabla-clientes">
-            <thead>
-                <tr>
-                    <th>Nombre</th>
-                    <th>Empleo</th>
-                    <th>Ingresos (DOP)</th>
-                    <th>Historial</th>
-                    <th>Riesgo</th>
-                </tr>
-            </thead>
-            <tbody></tbody>
-        </table>
-    </main>
 
-<script>
-    const clientes = [
-        { nombre: "Juan Pérez", empleo: "empleado", ingresos: 25000, historial: "bueno" },
-        { nombre: "Ana Gómez", empleo: "desempleado", ingresos: 8000, historial: "malo" },
-        { nombre: "Carlos Ruiz", empleo: "empleado", ingresos: 15000, historial: "regular" },
-        { nombre: "Lucía Fernández", empleo: "desempleado", ingresos: 12000, historial: "malo" },
-        { nombre: "Pedro Martínez", empleo: "empleado", ingresos: 30000, historial: "bueno" }
-    ];
+  <h2>Evaluación de Riesgo de Préstamo</h2>
 
-    function calcularRiesgo(c) {
-        let riesgo = 0;
-        // La lógica de cálculo de riesgo parece correcta según las reglas definidas implícitamente
-        if (c.empleo === "desempleado") riesgo += 40;
-        if (c.ingresos < 15000) riesgo += 30;
-        if (c.historial === "malo") riesgo += 30;
-        
-        // Se mantiene la lógica: Alto >= 70, Medio >= 40 (y < 70), Bajo < 40
-        if (riesgo >= 70) return {texto: "Alto", clase: "alto"};
-        if (riesgo >= 40) return {texto: "Medio", clase: "medio"};
-        return {texto: "Bajo", clase: "bajo"};
+  <!-- Sección Riesgo -->
+  <div class="section">
+    <form id="formularioRiesgo">
+      <h3>Ingresos y capacidad de pago</h3>
+      <label><input type="radio" name="ingresos" value="5"> Menos de 10,000 RD$ / mes</label>
+      <label><input type="radio" name="ingresos" value="3"> Entre 10,001 y 25,000 RD$ / mes</label>
+      <label><input type="radio" name="ingresos" value="0"> Más de 25,000 RD$ / mes</label>
+
+      <h3>Historial crediticio</h3>
+      <label><input type="radio" name="historial" value="5"> Mora frecuente o incumplimientos</label>
+      <label><input type="radio" name="historial" value="3"> Mora ocasional</label>
+      <label><input type="radio" name="historial" value="0"> Historial limpio</label>
+
+      <h3>Deudas actuales</h3>
+      <label><input type="radio" name="deudas" value="5"> Deuda > 50% de ingresos</label>
+      <label><input type="radio" name="deudas" value="3"> Deuda 30–50% de ingresos</label>
+      <label><input type="radio" name="deudas" value="0"> Deuda < 30% de ingresos</label>
+
+      <h3>Estabilidad laboral</h3>
+      <label><input type="radio" name="empleo" value="5"> Menos de 6 meses en empleo actual</label>
+      <label><input type="radio" name="empleo" value="3"> Entre 6–24 meses</label>
+      <label><input type="radio" name="empleo" value="0"> Más de 2 años</label>
+
+      <button type="button" onclick="calcularRiesgo()">Calcular Riesgo</button>
+      <button type="button" onclick="limpiarRiesgo()">Limpiar Riesgo</button>
+    </form>
+
+    <div class="resultado" id="resultado"></div>
+    <div class="barra">
+      <div class="barra-llena" id="barraRiesgo">0%</div>
+    </div>
+  </div>
+
+  <!-- Sección Calculadora -->
+  <div class="section">
+    <h3>Calculadora de Ganancias y Pagos Mensuales</h3>
+    <label>Último saldo (RD$): <input type="number" id="saldo" value="10000"></label>
+    <label>Tasa anual (%): <input type="number" id="tasa" value="10"></label>
+    <label>Plazo (meses): <input type="number" id="plazo" value="12"></label>
+    <button type="button" onclick="calcularGananciaPago()">Calcular Ganancia y Pago Mensual</button>
+    <button type="button" onclick="limpiarCalculadora()">Limpiar Calculadora</button>
+    <div id="resultadoGanancia"></div>
+  </div>
+
+  <!-- Sección Factura -->
+  <div class="section">
+    <h3>Generar Factura de Pago</h3>
+    <label>Nombre del Cliente:</label>
+    <input type="text" id="nombreCliente" placeholder="Ingrese el nombre del cliente">
+
+    <label>Último saldo (RD$):</label>
+    <input type="number" id="saldoFactura" placeholder="Último saldo pendiente">
+
+    <label>Abono Realizado (RD$):</label>
+    <input type="number" id="abonoFactura" placeholder="Monto del abono">
+
+    <button type="button" onclick="generarFactura()">Generar Factura PDF</button>
+    <button type="button" onclick="limpiarFactura()">Limpiar Factura</button>
+
+    <div id="resultadoFactura"></div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script>
+    // --- Riesgo ---
+    function calcularRiesgo() {
+      let puntos = 0;
+      const formulario = document.getElementById('formularioRiesgo');
+      formulario.querySelectorAll('input[type="radio"]:checked').forEach(item => {
+        puntos += parseInt(item.value);
+      });
+
+      const resultado = document.getElementById('resultado');
+      const barra = document.getElementById('barraRiesgo');
+      resultado.className = "resultado";
+
+      let mensaje = "";
+      let porcentaje = (puntos / 20) * 100;
+
+      if (puntos <= 7) {
+        mensaje = `Riesgo Bajo (${puntos} puntos) → Préstamo aprobado con monto completo.`;
+        barra.style.backgroundColor = "green";
+      } else if (puntos <= 15) {
+        mensaje = `Riesgo Medio (${puntos} puntos) → Préstamo aprobado con monto reducido.`;
+        barra.style.backgroundColor = "orange";
+      } else {
+        mensaje = `Riesgo Alto (${puntos} puntos) → Préstamo no recomendado.`;
+        barra.style.backgroundColor = "red";
+      }
+
+      resultado.innerText = mensaje;
+      barra.style.width = porcentaje + "%";
+      barra.innerText = Math.round(porcentaje) + "%";
     }
 
-    function mostrarClientes(lista) {
-        const cuerpo = document.querySelector('#tabla-clientes tbody');
-        cuerpo.innerHTML = '';
-        
-        // ⚠️ MEJORA: Usar document.createElement o un array de strings para mejor performance,
-        // pero la concatenación con += es aceptable para este tamaño.
-        const filasHTML = lista.map(c => {
-            const riesgo = calcularRiesgo(c);
-            // .toLocaleString() es correcto para formato de números
-            return `<tr>
-                <td>${c.nombre}</td>
-                <td>${c.empleo}</td>
-                <td>${c.ingresos.toLocaleString('es-DO', { style: 'currency', currency: 'DOP', minimumFractionDigits: 0 })}</td>
-                <td>${c.historial}</td>
-                <td class="${riesgo.clase}">${riesgo.texto}</td>
-            </tr>`;
-        }).join('');
-        cuerpo.innerHTML = filasHTML;
+    function limpiarRiesgo() {
+      document.getElementById('formularioRiesgo').reset();
+      const resultado = document.getElementById('resultado');
+      const barra = document.getElementById('barraRiesgo');
+      resultado.innerText = "";
+      barra.style.width = "0%";
+      barra.innerText = "0%";
+      barra.style.backgroundColor = "green";
     }
 
-    function filtrar() {
-        const filtroEmpleo = document.getElementById('filtro-empleo').value;
-        // Se asegura que los valores del filtro de riesgo se comparen con el texto de riesgo en minúsculas. CORRECTO.
-        const filtroRiesgo = document.getElementById('filtro-riesgo').value;
-        const buscar = document.getElementById('buscar').value.toLowerCase();
+    // --- Calculadora ---
+    function calcularGananciaPago() {
+      const saldo = parseFloat(document.getElementById('saldo').value);
+      const tasa = parseFloat(document.getElementById('tasa').value)/100;
+      const plazo = parseInt(document.getElementById('plazo').value);
 
-        const filtrados = clientes.filter(c => {
-            const riesgo = calcularRiesgo(c).texto.toLowerCase();
-            return (
-                (filtroEmpleo === 'todos' || c.empleo === filtroEmpleo) &&
-                (filtroRiesgo === 'todos' || riesgo === filtroRiesgo) &&
-                (c.nombre.toLowerCase().includes(buscar))
-            );
-        });
-        mostrarClientes(filtrados);
+      const ganancia = saldo * tasa * (plazo/12);
+      const pagoMensual = (saldo + ganancia) / plazo;
+
+      document.getElementById('resultadoGanancia').innerHTML = 
+        "Ganancia estimada: RD$ " + ganancia.toFixed(2) + "<br>" +
+        "Pago mensual estimado: RD$ " + pagoMensual.toFixed(2);
     }
 
-    // Los event listeners para activar la función filtrar están colocados correctamente.
-    document.getElementById('filtro-empleo').addEventListener('change', filtrar);
-    document.getElementById('filtro-riesgo').addEventListener('change', filtrar);
-    document.getElementById('buscar').addEventListener('input', filtrar);
-
-    function exportarCSV() {
-        // ⚠️ CORRECCIÓN/MEJORA 2: Se añade el Byte Order Mark (BOM) para asegurar la codificación UTF-8
-        // y el correcto manejo de caracteres especiales (como acentos) en el archivo CSV.
-        const bom = '\ufeff'; // BOM para UTF-8
-        let csv = bom + 'Nombre,Empleo,Ingresos,Historial,Riesgo\n';
-        
-        // Obtener solo las filas actualmente visibles y filtradas. CORRECTO.
-        const filas = document.querySelectorAll('#tabla-clientes tbody tr');
-        filas.forEach(tr => {
-            const celdas = tr.querySelectorAll('td');
-            // Reemplazar saltos de línea y comas dentro de los datos para evitar problemas en CSV
-            const datos = Array.from(celdas).map(td => `"${td.innerText.replace(/"/g, '""').replace(/\n/g, ' ')}"`);
-            csv += datos.join(',') + '\n';
-        });
-
-        // El tipo de Blob correcto para CSV es 'text/csv;charset=utf-8'
-        const blob = new Blob([csv], {type: 'text/csv;charset=utf-8'});
-        const url = URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        a.href = url;
-        a.download = 'lista_riesgo.csv';
-        a.click();
-        
-        // ⚠️ MEJORA: Liberar la URL del objeto Blob después de la descarga
-        setTimeout(() => URL.revokeObjectURL(url), 100); 
+    function limpiarCalculadora() {
+      document.getElementById('saldo').value = "10000";
+      document.getElementById('tasa').value = "10";
+      document.getElementById('plazo').value = "12";
+      document.getElementById('resultadoGanancia').innerText = "";
     }
 
-    // La llamada inicial para poblar la tabla. CORRECTO.
-    mostrarClientes(clientes);
-</script>
+    // --- Factura ---
+    function generarFactura() {
+      const { jsPDF } = window.jspdf;
+      const nombre = document.getElementById('nombreCliente').value;
+      const saldo = parseFloat(document.getElementById('saldoFactura').value);
+      const abono = parseFloat(document.getElementById('abonoFactura').value);
+
+      if (!nombre || isNaN(saldo) || isNaN(abono)) {
+        alert("Por favor completa todos los campos correctamente.");
+        return;
+      }
+
+      const saldoPendiente = saldo - abono;
+
+      // Mostrar factura en pantalla
+      document.getElementById('resultadoFactura').innerHTML =
+        `<strong>Cliente:</strong> ${nombre}<br>` +
+        `<strong>Último saldo:</strong> RD$ ${saldo.toFixed(2)}<br>` +
+        `<strong>Abono realizado:</strong> RD$ ${abono.toFixed(2)}<br>` +
+        `<strong>Saldo pendiente:</strong> RD$ ${saldoPendiente.toFixed(2)}<br>` +
+        `<strong>Fecha:</strong> ${new Date().toLocaleDateString()}`;
+
+      // Generar PDF
+      const doc = new jsPDF();
+      doc.setFontSize(16);
+      doc.text("Factura de Pago de Préstamo", 20, 20);
+      doc.setFontSize(12);
+      doc.text(`Cliente: ${nombre}`, 20, 40);
+      doc.text(`Último saldo: RD$ ${saldo.toFixed(2)}`, 20, 50);
+      doc.text(`Abono realizado: RD$ ${abono.toFixed(2)}`, 20, 60);
+      doc.text(`Saldo pendiente: RD$ ${saldoPendiente.toFixed(2)}`, 20, 70);
+      doc.text(`Fecha: ${new Date().toLocaleDateString()}`, 20, 80);
+      doc.save(`factura_${nombre}.pdf`);
+    }
+
+    function limpiarFactura() {
+      document.getElementById('nombreCliente').value = "";
+      document.getElementById('saldoFactura').value = "";
+      document.getElementById('abonoFactura').value = "";
+      document.getElementById('resultadoFactura').innerText = "";
+    }
+  </script>
 
 </body>
 </html>
